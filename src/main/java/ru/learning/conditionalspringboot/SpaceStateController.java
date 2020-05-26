@@ -1,5 +1,6 @@
 package ru.learning.conditionalspringboot;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
@@ -14,8 +15,12 @@ import reactor.core.publisher.Mono;
 @ConditionalOnResource(resources = {"classpath:test1.txt"})
 @Conditional(MyConditional.class)
 public class SpaceStateController {
+
+    @Value("${spring.message}")
+    private String message;
+
     @GetMapping("/pingaliens")
     public Mono<String> pingAliens() {
-        return Mono.just("Hi Aliens, coming a cup of coffee");
+        return Mono.just("Hi Aliens, coming a cup of coffee " + message);
     }
 }

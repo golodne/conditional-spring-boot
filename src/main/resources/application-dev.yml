@@ -1,0 +1,8 @@
+spring:
+  message: Hello from DEV
+
+server:
+  port: 8081
+
+spacestation:
+  enabled: true
